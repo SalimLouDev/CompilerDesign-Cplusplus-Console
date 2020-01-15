@@ -118,7 +118,7 @@ Tokens Scanner::getToken1()
 	{
 		s += ch;
 		f.get(ch);
-		while (isalpha(ch) || ch == '_')
+		while (isalpha(ch) || ch == '_' || isdigit(ch))
 		{
 			s += ch;
 			f.get(ch);
@@ -150,6 +150,18 @@ Tokens Scanner::getToken1()
 	f.putback(ch);
 	return Tokens::NUMBER;
 	}
+		else if (isdigit(ch))
+	{
+	s = ch;
+	f.get(ch);
+	while (isdigit(ch))
+	{
+		s += ch;
+		f.get(ch);
+	}
+	f.putback(ch);
+	return Tokens::NUMBER;
+	}
 	else return Tokens::ERROR;
 }
 
@@ -163,55 +175,55 @@ void Scanner::displayTokens1()
 		a = getToken1();
 		switch (a)
 		{
-		case START_PROGRAM:        cout << "START OF THE PROGRAM\n";
+		case START_PROGRAM:        cout << "Start_Program -----> START OF THE PROGRAM\n";
 			break;
-		case END_PROGRAM:          cout << "END OF PROGRAM\n";
+		case END_PROGRAM:          cout << "End_Program -----> END OF PROGRAM\n";
 			break;
-		case COMMENT:              cout << "COMMENT STARTER\n";
+		case COMMENT:              cout << "//. -----> COMMENT STARTER\n";
 			break;
-		case END_INSTRUCTION:      cout << "END OF INSTRUCRUCTION CHARACHTER \n";
+		case END_INSTRUCTION:      cout << ";; -----> END OF INSTRUCRUCTION \n";
 			break;
 		case RESERVED_WORD:        cout << "RESERVED WORD\n";
 			break;
 		case STRING:               cout << "STRING WORD\n";
 			break;
-		case INTEGER:              cout << "INTEGER NUMBER\n";
+		case INTEGER:              cout << "Int_Number -----> word reserved charachter\n";
 			break;
-		case FLOAT:                cout << "FLOAT NUMBER\n";
+		case FLOAT:                cout << "Real_Number -----> word reserved charachter\n";
 			break;
 		case IDENT:                cout << "IDENTIFIRE\n";
 			break;
-		case GIVE:                 cout << "INITIALISATION \n";
+		case GIVE:                 cout << "Give ----> Reserved Give Word \n";
 			break;
-		case AFFECT:               cout << "AFFECTATION TO VARIABLE\n";
+		case AFFECT:               cout << "Affect ----> Reserved word for affectation\n";
 			break;
 		case RESERVED_CHARACHTER:  cout << "RESERVED CHARACHTER\n";
 			break;
-		case IF:                   cout << "IF CONDITION\n";
+		case IF:                   cout << "IF -----> CONDITION\n";
 			break;
-		case BIGGER:               cout << "BIGGER\n";
+		case BIGGER:               cout << "> -----> BIGGER\n";
 			break;
-		case SMALLER:              cout << "SMALLER\n";
+		case SMALLER:              cout << "< -----> SMALLER\n";
 			break;
-		case EQUAL:                cout << "EQUAL\n";
+		case EQUAL:                cout << "== -----> EQUAL\n";
 			break;
-		case NOT_EQUAL:            cout << "NOT EQUAL\n";
+		case NOT_EQUAL:            cout << "<> -----> NOT EQUAL\n";
 			break;
-		case ELSE:                 cout << "ELSE CONDITION\n";
+		case ELSE:                 cout << "Else -----> ELSE CONDITION\n";
 			break;
-		case START:                cout << "START OF THE BLOCK\n";
+		case START:                cout << "Start -----> START OF THE BLOCK\n";
 			break;
-		case FINISH:               cout << "END OF THE BLOCK\n";
+		case FINISH:               cout << "Finish -----> END OF THE BLOCK\n";
 			break;
-		case SHOW_MES:             cout << "RESERVED TO SHOW MESSAGES\n";
+		case SHOW_MES:             cout << "ShowMes -----> RESERVED TO SHOW MESSAGES\n";
 			break;
-		case SHOW_VAL:             cout << "RESERVED TO SHOW VARIABLES VALUES\n";
+		case SHOW_VAL:             cout << "ShowVal -----> RESERVED TO SHOW VARIABLES VALUES\n";
 			break;
-		case TO:                   cout << "TO\n";
+		case TO:                   cout << "to -----> TO reserved charachter\n";
 			break;
-		case LTE:                  cout << "LESS THEN OR EQUAL\n";
+		case LTE:                  cout << "<= -----> LESS THEN OR EQUAL reserved charachter\n";
 			break;
-		case GTE:                  cout << "GREATER THAN OR EQUAL\n";  
+		case GTE:                  cout << ">= -----> GREATER THAN OR EQUAL reserved charachter\n";  
 			break;
 		case NUMBER:               cout << "NUMBER\n";
 			break;
@@ -229,7 +241,7 @@ inline Tokens Scanner::checkReserved1(string s)
 	else if (s == "Int_Number")  return Tokens::INTEGER;
 	else if (s == "Give")        return Tokens::GIVE;
 	else if (s == "Real_Number") return Tokens::FLOAT;
-	else if (s == "if")          return Tokens::IF;
+	else if (s == "If")          return Tokens::IF;
 	else if (s == "Affect")      return Tokens::AFFECT;
 	else if (s == "to")          return Tokens::TO;
 	else if (s == "ShowMes")     return Tokens::SHOW_MES;
@@ -242,7 +254,7 @@ inline Tokens Scanner::checkReserved1(string s)
 	else                         return Tokens::IDENT;
 }
 
-/*int main()
+int main()
 {
 	string name;
 	cout << "Enter the file name : ";
@@ -250,4 +262,4 @@ inline Tokens Scanner::checkReserved1(string s)
 	Scanner s(name);
 	s.displayTokens1();
 	s.~Scanner();
-}*/
+}

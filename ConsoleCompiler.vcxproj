@@ -149,7 +149,6 @@
   <ItemGroup>
     <ClCompile Include="ConsoleCompiler.cpp" />
     <ClCompile Include="parser.cpp" />
-    <ClCompile Include="Symantic.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
