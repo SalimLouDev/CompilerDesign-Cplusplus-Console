@@ -192,3 +192,46 @@ void Scanner::displayTokens1()
 - **Here is the output reading txt.compila file :**
 ![Compila Output](compilaOutput.PNG)
 
+### 1. Syntaxic and Symatic analysis (parser.cpp) :
+
+we need to generate a grammar to use this tokens in a coherent way every token in it's positon than define the meaning of every instruction in the symatix phase
+
+- **Grammar :**
+```
+<programe> ---> Start_Programe <seq> End_Programe
+<seq> ---> E | <type> : <identList> ;; <seqTail> | <command> <seqTail>
+<seqTail> ---> E | <seq>
+<type> ---> Int_Number | Real_Number
+<identList> ---> <ident> <identListTail>
+<identListTail> ---> E | ,<identList>
+<command> ---> Give <ident> : <typeNumber> ;; | ShowMes : <string> ;; | ShowVal : <ident> ;; | <comment> | If -- <exp> -- <command> <commandTail>
+<commandTail> ---> ;; | Else Start <command> Finish
+<exp> ---> <ident> <exp> <ident>
+<typeNumber> ---> <integer> | <real>
+<op> ---> == | >= | <= | <>
+<string> ---> C++ code implementation
+<comment> ---> C++ code implementation
+<integer> ---> C++ code implementation
+<real> ---> C++ code implementation
+<ident> ---> C++ code implementation
+```
+- using this grammar and tree Data structure we can detect if the position of the token in every instruction matched to it's place .
+- now every none Terminal Variable needs a function to scan and construct the instruction 
+- non Terminal like ```<seq>``` and ```<exp>```
+- here is the table describe all the functions needed for all none Terminal varibale
+```c++
+Node* programe(); --------> for non Terminal <program>
+Node* seq();--------------> for non Terminal <seq>	
+Node* seqTail();----------> for non Terminal <seqTail>
+Node* typeTest();---------> for non Terminal <typeTest>
+Node* type();-------------> for non Terminal <type>
+Node* identList();--------> for non Terminal <identList>
+Node* identListTail();----> for non Terminal <identListTail>
+Node* command();----------> for non Terminal <command>
+Node* typeNumber();-------> for non Terminal <typeNumber>
+Node* exp();--------------> for non Terminal <exp>
+Node* commandTail();------> for non Terminal <commandTail>
+Node* op();---------------> for non Terminal <op>
+``` 
+  - **Here is the output parsing sample.compila file :**
+![Compila Output](compilaOutput1.PNG)

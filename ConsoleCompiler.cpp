@@ -254,7 +254,7 @@ inline Tokens Scanner::checkReserved1(string s)
 	else                         return Tokens::IDENT;
 }
 
-int main()
+/*int main()
 {
 	string name;
 	cout << "Enter the file name : ";
@@ -262,4 +262,4 @@ int main()
 	Scanner s(name);
 	s.displayTokens1();
 	s.~Scanner();
-}
+}*/

@@ -795,7 +795,7 @@ Node* Parser::op()
     return ptr;
 }
 
-/*int main()
+int main()
 {
     string filename;
     cout << "Filename?: ";
@@ -806,4 +806,4 @@ Node* Parser::op()
     in.displayTree(root);
     in.displaySymantic();
     return 0;
-}*/
+}
